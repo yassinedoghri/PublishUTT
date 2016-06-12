@@ -1,0 +1,43 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PublicationAuthor
+ *
+ * @ORM\Table(name="publication_author", indexes={@ORM\Index(name="fk_co_written_publication", columns={"id_publication"})})
+ * @ORM\Entity
+ */
+class PublicationAuthor
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="orderIndex", type="integer", nullable=true)
+     */
+    private $orderindex;
+
+    /**
+     * @var \AppBundle\Entity\Publication
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publication", inversedBy="authors")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_publication", referencedColumnName="id")
+     * })
+     */
+    private $publication;
+
+    /**
+     * @var \AppBundle\Entity\Author
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="publications")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_author", referencedColumnName="id")
+     * })
+     */
+    private $author;
+
+
+}

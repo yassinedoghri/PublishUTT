@@ -1,0 +1,63 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Team
+ *
+ * @ORM\Table(name="team", indexes={@ORM\Index(name="fk_team_umr", columns={"umr"})})
+ * @ORM\Entity
+ */
+class Team
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="initials", type="string", length=10, nullable=true)
+     */
+    private $initials;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="wording", type="string", length=128, nullable=true)
+     */
+    private $wording;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TeamResearcher", mappedBy="team")
+     */
+    private $researchers;
+
+    /**
+     * @var \AppBundle\Entity\Umr
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Umr", inversedBy="teams")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="umr", referencedColumnName="id")
+     * })
+     */
+    private $umr;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->researchers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
