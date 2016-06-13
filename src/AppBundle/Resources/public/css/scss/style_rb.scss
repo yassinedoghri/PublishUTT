@@ -1,0 +1,313 @@
+@import "compass/css3";
+// @import "compass/reset";
+
+$light-grey: #BDBDBD;
+
+.clear{clear: both;}
+
+.block{ border: solid 1px #eee; border-radius: 5px; @include box-shadow(#F7F7F7 1px 2px 1px 1px); padding: 15px; }
+.background-img{ background-size: cover; background-position: 50% 50%;}
+.fa{margin-right: 5px;}
+.number-of{ line-height: 35px; margin: 0px; }
+.table{display: table;}
+.table-cell{display: table-cell; height: 100%;}
+.v-middle{vertical-align: middle;}
+.v-bottom{vertical-align: bottom;}
+.text-green{color: #02CB02;}
+.text-orange{color: #FFB400;}
+.text-red{color: #FF0000;}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	line-height: 1.5em;
+}
+
+header{
+	.nav{
+		.nav-item{
+			display: inline;
+			&:first-child{
+				&:after{
+					// content: " | ";
+				}
+			}
+		}
+	}
+	.account-img{
+		height: 50px;
+		width: 50px;
+		border-radius: 50%;
+	}
+}
+
+.content{
+	// SEARCH
+	.main-search{
+		margin: 60px auto;
+		@media screen and (min-width: 993px){> span{ width: 40% !important;}}
+		@media screen and (max-width: 992px){> span{ width: 80% !important;}}
+	}
+
+	.search-box{
+		form{
+			select{
+				margin-bottom: 15px;
+				&:last-child{margin-bottom: 0px;}
+			}
+		}
+		@media screen and (max-width: 993px){margin-bottom: 60px;}
+	}
+
+	.search-item-container{
+		.search-item{
+			min-height: 200px;
+			margin-top: 15px;
+			margin-bottom: 15px;
+			position: relative;
+			padding: 0px;
+			.search-item-img{
+				height: 100%;
+				width: 33%;
+				position: absolute;
+				left: 0px;
+				border-radius: 5px;
+				&:after{
+					@include background-image(linear-gradient(to right, transparent, transparent 30%, white 85%, white));
+					content: "";
+					height: 100%;
+					width: 100%;
+					position: absolute;
+					right: 0px;
+				}
+			}
+			.search-item-content{
+				position: relative;
+				height: 100%;
+				padding: 15px 15px 15px 25%;
+				ul.search-item-author{
+					list-style: none;
+					padding-left: 0px;
+					li{
+						display: inline; 
+						&:after{content: ", ";}
+						&:last-child{&:after{content: ""};}
+						&:nth-last-child(2){&:after{content: " & "};}
+					}
+				}
+				.search-item-abstract{
+					// text-align: justify;
+					&:after{content: "...";}
+				}
+				.search-item-book{
+
+				}
+				.search-item-year{
+					position: absolute;
+					right: 15px;
+					top: 15px;
+				}			
+				.search-item-category{
+					position: absolute;
+					right: 15px;
+					bottom: 15px;
+				}
+			}
+		}
+		nav{
+			p{float: left; line-height: 70px; margin-right: 15px;}
+			.pager{
+				float: left;
+				margin-top: 15px;
+				margin-bottom: 15px;
+				a{
+					border-radius: 5px;
+					padding: 5px 15px 4px 15px;
+				}
+			}
+		}
+	}
+
+	.collaborator-item-container{
+		.collaborator-item{
+			position: relative;
+			margin-top: 15px;
+			margin-bottom: 15px;
+			.collaborator-item-team{
+				position: absolute;
+				right: 15px;
+				top: 15px;
+			}
+		}
+	}
+
+
+	// VIEW MY PUBLICATIONS
+	#filters{
+		margin-top: 15px;
+		p{
+			line-height: 68px; margin: 0px;
+		}
+		button{
+			margin-top: 15px;
+			margin-bottom: 15px;
+			width: 100%;
+			text-align: center;
+			padding-left: 0px;
+			padding-right: 0px;
+			&:last-child{margin-right: 0px;}
+			&.is-checked{
+				background: black;
+				color: white;
+			}
+			&:active, &:focus{outline: none;}
+		}
+	}
+
+	.grid-item{
+		position: relative;
+		.my-publication-close{
+			border-radius: 5px;
+			margin: 15px;
+			position: absolute;
+			display: none;
+			top: 0;
+			right: 0;
+			z-index: 999;
+			.fa-times{
+				padding: 10px;
+				color: white;
+				margin-right: 0px;
+				&:hover{cursor: pointer;}
+			}
+		}
+		.block{
+			position: relative;
+			height: 250px;
+			margin-top: 15px;
+			margin-bottom: 15px;
+			&:hover{cursor: pointer;}
+			&.my-publication-conference{
+				background: url('../img/bg_conference.png');
+				background-position: 100% 0%;
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+			&.my-publication-article{
+				background: url('../img/bg_article.png');
+				background-position: 100% 0%;
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+			.my-publication{
+				h5{
+					@include word-break(break-all);
+					@include word-break(break-word);
+					// @include hyphens(auto);
+					margin: 0px;
+				}
+				.my-publication-data{position: absolute; top: 15px; left: 15px;}
+				&.my-publication-off{
+					height: 100%;
+					width: 100%;
+					.my-publication-edit{opacity: 0; @include transition(all 0.2s ease);}
+				}
+				&.my-publication-on{
+					cursor: initial;
+					.my-publication-edit{opacity: 1; @include transition(all 0.2s ease);}
+				}
+				.my-publication-edit{
+					height: 100%;
+					border-radius: 5px;
+					background: rgba(0,0,0,0.8);
+					position: absolute;
+					top: 0px;
+					left: 0px;
+					.my-publication-edit-icon{
+						position: relative;
+						float: none;
+						display: none;
+						i.fa{ @include transition(all 0.2s ease);
+							margin-right: 0px;
+							border: solid 2px white;
+							color: white;
+							border-radius: 5px;
+							padding: 10px;
+							&:hover{color: #373a3c; background-color: white;}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	// VIEW PUBLICATION
+	.header-publication{
+		width: 100%;
+		min-height: 250px;
+		background: url('http://placehold.it/1250x250');
+		background-size: cover;
+		background-position: 50% 50%;
+		.header-publication-title{
+			margin-top: 30px;
+			margin-bottom: 30px;
+			.header-publication-block{
+				padding: 6px 10px;
+				background-color: white;
+				display: table;
+				p{margin-bottom: 0px;}
+			}
+		}
+	}
+	.publication{
+		margin-top: 60px;
+		margin-bottom: 60px;
+		.about-publication{
+			margin-bottom: 30px;
+			.list-author{
+				padding-left: 0px;
+				li{
+					display: table;
+					margin-bottom: 15px;
+					padding: 3px 15px;
+					&:last-child{margin-bottom: 0px;}
+					a{color: white;}
+				}
+			}
+			.abstract{
+				line-height: 2em;
+				.publication-location{
+					margin-bottom: 0px;
+				}
+			}	
+		}
+		.link-publication{
+			p{margin-bottom: 0px;}
+			div{
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+			.data-label{
+				color: $light-grey;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 767px){
+	.content{
+		#filters{
+			margin-top: 0px;
+			p{line-height: 2em;}
+			button{margin-top: 5px; margin-bottom: 5px;}
+		}
+		.header-publication-title{
+			margin-top: 15px !important;
+			margin-bottom: 0px !important;
+			&:last-child{margin-top: 0px !important;}
+		}
+		.list-author{
+			margin-top: 30px;
+			li{display: inline-block !important; padding: 5px 15px !important;}
+		}
+	}
+}

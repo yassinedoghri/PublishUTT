@@ -13,26 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class OrganizationUmr
 {
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_organization", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $idOrganization;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id_umr", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $idUmr;
-
-    /**
      * @var \AppBundle\Entity\Organization
      *
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Organization", inversedBy="umrs")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_organization", referencedColumnName="id")
@@ -43,6 +26,7 @@ class OrganizationUmr
     /**
      * @var \AppBundle\Entity\Umr
      *
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Umr", inversedBy="organizations")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_umr", referencedColumnName="id")

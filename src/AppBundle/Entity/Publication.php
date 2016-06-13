@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Publication
@@ -88,6 +89,7 @@ class Publication
      * @var boolean
      *
      * @ORM\Column(name="status", type="boolean", nullable=true)
+     * @Assert\Choice(choices = {"P", "R", "S"}, message = "Choose a valid status.")
      */
     private $status;
 
@@ -108,7 +110,7 @@ class Publication
     /**
      * @var \AppBundle\Entity\Publisher
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publisher")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publisher", inversedBy="publications")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="publisher", referencedColumnName="id")
      * })
@@ -118,7 +120,7 @@ class Publication
     /**
      * @var \AppBundle\Entity\Category
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="categories")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category", referencedColumnName="initials")
      * })

@@ -54,13 +54,4 @@ class DefaultController extends Controller {
         return array();
     }
 
-    /**
-     * @Template("AppBundle:Default:publication.html.twig")
-     * @Route("/publication", name="my-publications")
-     */
-    public function publicationAction(Request $request) {
-        // replace this example code with whatever you need
-        return array();
-    }
-
 }

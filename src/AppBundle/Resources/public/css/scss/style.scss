@@ -12,6 +12,7 @@ html {
     min-height: 100%;
 }
 body {
+    font-family: "Roboto";
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
@@ -76,6 +77,19 @@ nav.navbar{
         padding-top: .7rem;
         padding-bottom: .7rem;
         @include transition(all 0.4s ease);
+    }
+}
+
+.navbar-shrink {
+    background-color: #FFF;
+
+    .navbar-brand {
+        padding-top: .7rem!important;
+        padding-bottom: .7rem!important;
+    }
+    .nav-link {
+        padding-top: .425rem!important;
+        padding-bottom: .425rem!important;
     }
 }
 

@@ -22,6 +22,7 @@ class PublicationAuthor
     /**
      * @var \AppBundle\Entity\Publication
      *
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publication", inversedBy="authors")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_publication", referencedColumnName="id")
@@ -32,6 +33,7 @@ class PublicationAuthor
     /**
      * @var \AppBundle\Entity\Author
      *
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="publications")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_author", referencedColumnName="id")

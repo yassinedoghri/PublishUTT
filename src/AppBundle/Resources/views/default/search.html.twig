@@ -5,18 +5,33 @@
 {% endblock %}
 
 {% block body %}
-    <div class="content">
-        <div class="container">
-            <div class="row">	
-                <form class="col-xs-12 main-search text-xs-center form-inline">
-                    <select class="js-example-basic-multiple form-control" multiple="multiple">
-                        <option value="namex">FirstName A NAME X</option>
-                        <option value="namey">FirstName B NAME Y</option>
-                        <option value="namez">FirstName C NAME Z</option>
-                    </select>
-                    <button class="btn btn-success-outline" type="submit"><i class="fa fa-search m-r-0"></i></button>
+    <header class="parallax-window">
+        <img class="parallax-slider" src="{{ asset('bundles/app/img/header-bg.jpg') }}"/>
+        <div class="container search-form">
+            <div class="row">
+                <form class="form-inline col-lg-12" action="{{ path('search') }}" method="GET">
+                    <div class="input-group">
+                        <select class="form-control-xl search-input" name="q[]" multiple="multiple" style="width:100%;">
+                            <option value="AL">Alabama</option>
+                            <option value="WY">Wyoming</option>
+                            <option value="AL1">Alabama1</option>
+                            <option value="WY1">Wyoming1</option>
+                            <option value="AL2">Alabama2</option>
+                            <option value="WY2">Wyoming2</option>
+                            <option value="AL3">Alabama3</option>
+                            <option value="WY3">Wyoming3</option>
+                        </select>
+                        <!--<input type="text" class="form-control form-control-xl search-input" name="q" placeholder="Look for a publication, an author, a laboratory...">-->
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary btn-xl" type="submit"><span class="fa fa-search"></span></button>
+                        </span>
+                    </div>
                 </form>
             </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="search-box block">

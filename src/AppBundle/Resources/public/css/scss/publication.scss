@@ -1,0 +1,52 @@
+@import "compass/css3";
+
+$light-grey: #BDBDBD;
+
+.publication-header {
+    padding: 100px 0;
+    color: #fff;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+    .publication-category {
+        color: rgba(0,0,0,0.8);
+        font-size: 1.5rem;
+        text-shadow: none;
+    }
+}
+.publication-date {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+#publication {
+    margin-top: 60px;
+    margin-bottom: 100px;
+
+    .publication-about {
+        margin-bottom: 30px;
+        .list-author {
+            padding-left: 0px;
+            li{
+                display: table;
+                margin-bottom: 15px;
+                padding: 3px 15px;
+                &:last-child{margin-bottom: 0px;}
+                a{color: white;}
+            }
+        }
+        .abstract {
+            line-height: 2em;
+            .publication-location {
+                margin-bottom: 0px;
+            }
+        }
+    }
+    .publication-links {
+        div {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .data-label {
+            color: $light-grey;
+        }
+    }
+}

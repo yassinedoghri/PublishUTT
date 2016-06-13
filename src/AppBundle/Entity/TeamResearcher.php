@@ -15,6 +15,7 @@ class TeamResearcher
     /**
      * @var \AppBundle\Entity\Team
      *
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Team", inversedBy="researchers")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_team", referencedColumnName="id")
@@ -25,6 +26,7 @@ class TeamResearcher
     /**
      * @var \AppBundle\Entity\User
      *
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="teams")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_researcher", referencedColumnName="id")
