@@ -1,0 +1,150 @@
+{% extends 'base_sign.html.twig' %}
+
+{% block title %}Sign Up{% endblock %}
+{% block page_desc %}Create Your Account{% endblock %}
+{% block body %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="my-account-head">
+                        <h2>My Account</h2>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <fieldset class="form-group col-lg-12">
+                                <label for="formGroupEmail">Email</label>
+                                <input type="text" class="form-control" id="formGroupEmail">
+                            </fieldset>
+                        </div>
+                        <div class="row">
+                            <fieldset class="form-group col-lg-6">
+                                <label for="formGroupPassword">Password</label>
+                                <input type="password" class="form-control" id="formGroupPassword">
+                            </fieldset>
+                            <fieldset class="form-group col-lg-6">
+                                <label for="formGroupPasswordVerif">Verify your Password</label>
+                                <input type="password" class="form-control" id="formGroupPasswordVerif">
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pers-info-head">
+                        <h2>My Personnal Informations</h2>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <fieldset class="form-group col-lg-6">
+                                <label for="formGroupFirstname">Firstname</label>
+                                <input type="text" class="form-control" id="formGroupFirstname">
+                            </fieldset>
+                            <fieldset class="form-group col-lg-6">
+                                <label for="formGroupLastname">Lastname</label>
+                                <input type="text" class="form-control" id="formGroupLastname">
+                            </fieldset>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="formGroupBirthday" style="width:100%">Date Of Birth</label>
+                                <fieldset class="form-group row">
+                                    <div class="col-xs-4">
+                                        <select class="form-control" id="formGroupBirthday">
+                                            <option>1</option>       
+                                            <option>2</option>       
+                                            <option>3</option>       
+                                            <option>4</option>       
+                                            <option>5</option>       
+                                            <option>6</option>       
+                                            <option>7</option>       
+                                            <option>8</option>       
+                                            <option>9</option>       
+                                            <option>10</option>       
+                                            <option>11</option>       
+                                            <option>12</option>       
+                                            <option>13</option>       
+                                            <option>14</option>       
+                                            <option>15</option>       
+                                            <option>16</option>       
+                                            <option>17</option>       
+                                            <option>18</option>       
+                                            <option>19</option>       
+                                            <option>20</option>       
+                                            <option>21</option>       
+                                            <option>22</option>       
+                                            <option>23</option>       
+                                            <option>24</option>       
+                                            <option>25</option>       
+                                            <option>26</option>       
+                                            <option>27</option>       
+                                            <option>28</option>       
+                                            <option>29</option>       
+                                            <option>30</option>       
+                                            <option>31</option> 
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <select class="form-control">
+                                            <option value="1">January</option>       
+                                            <option value="2">February</option>       
+                                            <option value="3">March</option>       
+                                            <option value="4">April</option>       
+                                            <option value="5">May</option>       
+                                            <option value="6">June</option>       
+                                            <option value="7">July</option>       
+                                            <option value="8">August</option>       
+                                            <option value="9">September</option>       
+                                            <option value="10">October</option>       
+                                            <option value="11">November</option>       
+                                            <option value="12">December</option>  
+                                        </select>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <select class="form-control">
+                                            <option>2009</option>       
+                                            <option>2010</option>       
+                                            <option>2011</option>       
+                                            <option>2012</option>       
+                                            <option>2013</option>       
+                                            <option>2014</option>       
+                                            <option>2015</option>       
+                                            <option>2016</option>       
+                                            <option>2017</option>       
+                                            <option>2018</option>       
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <fieldset class="form-group col-lg-6">
+                                <label for="formGroupPhoneNumber">Phone Number</label>
+                                <input type="text" class="form-control" id="formGroupPhoneNumber">
+                            </fieldset>
+                        </div>
+                        <div class="row">
+                            <fieldset class="form-group col-lg-6">
+                                <label for="formGroupOrganization">Organization</label>
+                                <input type="text" class="form-control" id="formGroupOrganization">
+                            </fieldset>
+                            <fieldset class="form-group col-lg-6">
+                                <label for="formGroupResearchTeam">Research Team</label>
+                                <input type="text" class="form-control" id="formGroupResearchTeam">
+                            </fieldset>
+                        </div>
+                        <p class="text-muted text-xs-center">
+                            <strong>Publish UTT is committed to securing your information and keeping them strictly confidential.</strong><br />
+                            Under the Data Protection Act of 6 January 1978, you have a right of access, rectification and opposition.
+                        </p>
+                        <div class="form-group row">
+                            <div class="col-lg-12 text-xs-center">
+                                <button type="submit" class="btn btn-lg btn-primary-outline">Sign Up!</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -66,3 +66,28 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+## Elastica Configuration
+#fos_elastica:
+#    clients:
+#        default: { host: localhost, port: 9200 }
+#    indexes:
+#        app:
+#            client: default
+#            index_name: app_%kernel.environment%
+#            types:
+#                publication:
+#                    mappings:
+#                        id:
+#                        title: ~
+#                        abstract: ~
+#                        booktitle: ~
+#                        dateofpublication: ~
+#                        journal: ~
+#                    persistence:
+#                        driver: orm
+#                        model: PublishUTT\AppBundle\Entity\Publication
+#                        provider: ~
+#                        listener:
+#                            immediate: ~
+#                        finder: ~

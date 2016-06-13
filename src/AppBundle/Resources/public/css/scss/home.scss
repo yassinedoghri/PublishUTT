@@ -1,0 +1,150 @@
+@import "compass";
+
+/* Custom page CSS
+-------------------------------------------------- */
+body {
+    font-family: Roboto;
+}
+
+.parallax-window {
+    background: transparent;
+}
+
+.home-heading {
+    font-weight: 300;
+}
+
+.navbar-shrink {
+    background-color: #FFF;
+
+    .navbar-brand {
+        padding-top: .7rem!important;
+        padding-bottom: .7rem!important;
+    }
+    .nav-link {
+        padding-top: .425rem!important;
+        padding-bottom: .425rem!important;
+    }
+}
+
+.search-form {
+    position: relative;
+    padding-top: 200px;
+    padding-bottom: 250px;
+    text-align: center;
+    z-index: 10;
+
+    @media (max-width: 34em) {
+        padding-top: 150px;
+        padding-bottom: 200px;
+    }
+
+    .search-heading {
+        font-size: 34px;
+        font-weight: 300;
+        line-height: 40px;
+        margin-bottom: 25px;
+        color: rgba(0,0,0,.8);
+    }
+
+    .search-input {
+        font-weight: 300;
+    }
+
+    .as-container {
+        width: 100%;
+        position: absolute;
+        bottom: -40px;
+        left: 0;
+    }
+}
+
+.input-group {
+    @media (max-width: 34em) {
+        display: block!important;
+    }
+}
+
+.input-group-btn {
+    background: rgba(255,255,255,0.8);
+    border-radius: 0 .3rem .3rem 0!important;
+
+    @media (max-width: 34em) {
+        background: transparent;
+    }
+}
+
+.btn-xl {
+    background: transparent;
+    padding: 1.25rem 2rem;
+    font-size: 1.25rem;
+    line-height: 1.333333;
+    border: none;
+
+    &:hover {
+        background: transparent;
+        color: #0275d8;
+    }
+
+    @media (max-width: 34em) {
+        background: rgba(255,255,255,0.8);
+        border-radius: .3rem!important;
+        margin-top: 5px;
+        width: 100%!important;
+
+        &:hover {
+            background: rgba(255,255,255,0.8);
+        }
+    }
+}
+
+section {
+    padding: 50px 0;
+}
+
+#about {
+    background-color: #EEEEF0;
+}
+
+/* Select 2 Override */
+.select2-container {
+    position: relative;
+    z-index: 20;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+    display: table-cell;
+    width: 600px!important;
+
+    @media (max-width: 47.9em) {
+        width: 400px!important;
+    }
+    @media (max-width: 34em) {
+        width: 100%!important;
+    }
+
+    .select2-selection {
+        border: none;
+        padding: .9rem 2rem;
+        border-radius: .3rem 0 0 .3rem;
+        font-size: 1.25rem;
+        line-height: 1.333333;
+        background-color: rgba(#fff,0.8);
+
+        @media (max-width: 34em) {
+            border-radius: .3rem;
+        }
+    }
+}
+
+.select2-container--focus {
+    .select2-selection {
+        border: none!important;
+    }
+}
+
+.select2-selection__choice {
+    font-size: 1.2rem;
+    border: none!important;
+    @include box-shadow(rgba(#000,0.2) 0 1px 0 0);
+}

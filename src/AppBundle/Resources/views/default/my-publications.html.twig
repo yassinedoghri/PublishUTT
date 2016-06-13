@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/search.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="container">
+            <div id="filters" class="button-group">  
+                <div class="row">
+                    <p class="text-md-right col-md-4">Filter my publications : </p>
+                    <div class="col-xs-6 col-md-2"><button class="button btn is-checked" data-filter="*">All</button></div>
+                    <div class="col-xs-6 col-md-2"><button class="button btn" data-filter=".published"><i class="fa fa-circle-o text-green"></i>Published</button></div>
+                    <div class="col-xs-6 col-md-2"><button class="button btn" data-filter=".review"><i class="fa fa-circle-o text-orange"></i>Review</button></div>
+                    <div class="col-xs-6 col-md-2"><button class="button btn" data-filter=".submitted"><i class="fa fa-circle-o text-red"></i>Submitted</button></div>
+                </div>
+            </div>
+            <div class="my-publication-container row grid">
+                <div class="col-xs-12 col-md-6 col-lg-4 grid-item review">
+                    <div class="my-publication-close">
+                        <i class="fa fa-times"></i>
+                    </div>
+                    <div class="block table my-publication-conference">
+                        <div class="my-publication my-publication-off table-cell v-bottom">
+                            <h5>Les conférences de consensus : un nouveau mode de délibération politique (programme de recherche CDE, rapport final).</h5>
+                            <p class="my-publication-data">2013 | CI | <i class="fa fa-circle-o text-orange"></i></p>
+                            <div class="my-publication-edit table">
+                                <div class="col-xs-6 text-xs-right my-publication-edit-icon table-cell v-middle"><a href="view_publication.html"><i class="fa fa-eye fa-2x"></i></a></div>
+                                <div class="col-xs-6 text-xs-left my-publication-edit-icon table-cell v-middle"><a href="edit_publication.html"><i class="fa fa-edit fa-2x"></i></a></div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4 grid-item published">
+                    <div class="my-publication-close">
+                        <i class="fa fa-times"></i>
+                    </div>
+                    <div class="block table my-publication-article">
+                        <div class="my-publication my-publication-off table-cell v-bottom">
+                            <h5>Residual stress determination in a shot-peened nickel-based single crystal superalloy using X-ray diffraction.</h5>
+                            <p class="my-publication-data">2013 | RI | <i class="fa fa-circle-o text-green"></i></p>
+                            <div class="my-publication-edit table">
+                                <div class="col-xs-6 text-xs-right my-publication-edit-icon table-cell v-middle"><a href="view_publication.html"><i class="fa fa-eye fa-2x"></i></a></div>
+                                <div class="col-xs-6 text-xs-left my-publication-edit-icon table-cell v-middle"><a href="edit_publication.html"><i class="fa fa-edit fa-2x"></i></a></div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4 grid-item submitted">
+                    <div class="my-publication-close">
+                        <i class="fa fa-times"></i>
+                    </div>
+                    <div class="block table my-publication-conference">
+                        <div class="my-publication my-publication-off table-cell v-bottom">
+                            <h5>Component replenishment planning for a single-level assembly system under random lead times: a chance constrained programming approach.</h5>
+                            <p class="my-publication-data">2012 | CF | <i class="fa fa-circle-o text-red"></i></p>
+                            <div class="my-publication-edit table">
+                                <div class="col-xs-6 text-xs-right my-publication-edit-icon table-cell v-middle"><a href="view_publication.html"><i class="fa fa-eye fa-2x"></i></a></div>
+                                <div class="col-xs-6 text-xs-left my-publication-edit-icon table-cell v-middle"><a href="edit_publication.html"><i class="fa fa-edit fa-2x"></i></a></div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-4 grid-item published">
+                    <div class="my-publication-close">
+                        <i class="fa fa-times"></i>
+                    </div>
+                    <div class="block table my-publication-article">
+                        <div class="my-publication my-publication-off table-cell v-bottom">
+                            <h5>Robust optimization for the cyclic hoist scheduling problem.</h5>
+                            <p class="my-publication-data">2013 | RF | <i class="fa fa-circle-o text-green"></i></p>
+                            <div class="my-publication-edit table">
+                                <div class="col-xs-6 text-xs-right my-publication-edit-icon table-cell v-middle"><a href="view_publication.html"><i class="fa fa-eye fa-2x"></i></a></div>
+                                <div class="col-xs-6 text-xs-left my-publication-edit-icon table-cell v-middle"><a href="edit_publication.html"><i class="fa fa-edit fa-2x"></i></a></div>
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/vendor/tether/dist/js/tether.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/isotope/dist/isotope.pkgd.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/my-publications.js') }}"></script>
+{% endblock %}

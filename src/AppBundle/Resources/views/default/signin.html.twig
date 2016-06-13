@@ -1,0 +1,54 @@
+{% extends 'base_sign.html.twig' %}
+
+{% block title %}Sign In{% endblock %}
+{% block page_desc %}Access Your Account{% endblock %}
+{% block body %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-pull-1 pull-lg-right">
+                    <div class="text-xs-center text-lg-left">
+                        <h2>Do you have an account?</h2> 
+                        <p class="text-muted">Sign in to manage your account and publications.</p>
+                    </div>
+                    <form>
+                        <span class="input input--fumi">
+                            <input class="input__field input__field--fumi" type="email" tabindex="1"/>
+                            <label class="input__label input__label--fumi">
+                                <i class="fa fa-fw fa-envelope-o icon icon--fumi"></i>
+                                <span class="input__label-content input__label-content--fumi">Email</span>
+                            </label>
+                        </span>
+                        <span class="input input--fumi">
+                            <input class="input__field input__field--fumi" type="password" tabindex="2"/>
+                            <label class="input__label input__label--fumi" for="inputPwd">
+                                <i class="fa fa-fw fa-lock icon icon--fumi"></i>
+                                <span class="input__label-content input__label-content--fumi">Password</span>
+                            </label>
+                        </span>
+                        <span class="pull-right"><a href="" tabindex="-1">Password forgotten?</a></span>
+                        <div class="checkbox pull-lg-left">
+                            <label>
+                                <input type="checkbox" tabindex="3"> Remember me
+                            </label>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-12 text-xs-center">
+                                <button type="submit" class="btn btn-primary-outline" tabindex="4">Sign in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4 col-lg-offset-1 sign-up">
+                    <div class="text-xs-center text-lg-left">
+                        <h2>Wish to join us?</h2>
+                        <p class="text-muted">Sign up to write and publish your scientific articles!</p>
+                    </div>
+                    <div class="text-xs-center">
+                        <a href="{{ path('signup') }}" class="btn btn-lg btn-primary-outline">Create my account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

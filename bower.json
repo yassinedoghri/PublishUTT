@@ -1,0 +1,21 @@
+{
+  "name": "publish-utt",
+  "version": "1.0.0",
+  "main": "path/to/main.css",
+  "directory": "web/assets/vendor/",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2",
+    "font-awesome": "fontawesome#^4.6.2",
+    "owl.carousel": "^2.1.1",
+    "parallax.js": "^1.4.2",
+    "roboto-fontface": "^0.4.5",
+    "select2": "^4.0.2",
+    "tether": "^1.3.2",
+    "isotope": "^3.0.1"
+  },
+  "devDependencies": {}
+}
