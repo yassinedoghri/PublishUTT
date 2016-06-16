@@ -11,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User {
-
+class User extends BaseUser
+{
     /**
      * @var integer
      *
@@ -20,85 +20,68 @@ class User {
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=32, nullable=true)
-     */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=64, nullable=true)
-     */
-    private $password;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=64, nullable=true)
-     */
-    private $email;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=64, nullable=true)
      */
-    private $firstname;
+    protected $firstname;
 
     /**
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=64, nullable=true)
      */
-    private $lastname;
+    protected $lastname;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateOfBirth", type="date", nullable=true)
      */
-    private $dateofbirth;
+    protected $dateofbirth;
 
     /**
      * @var string
      *
      * @ORM\Column(name="phoneNumber", type="string", length=15, nullable=true)
      */
-    private $phonenumber;
+    protected $phonenumber;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\TeamResearcher", mappedBy="researcher")
      */
-    private $teams;
+    protected $teams;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PublicationResearcher", mappedBy="researcher")
      */
-    private $publications;
+    protected $publications;
 
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
+        parent::__construct();
         $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
         $this->publications = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -108,7 +91,8 @@ class User {
      * @param string $username
      * @return User
      */
-    public function setUsername($username) {
+    public function setUsername($username)
+    {
         $this->username = $username;
 
         return $this;
@@ -119,7 +103,8 @@ class User {
      *
      * @return string 
      */
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
@@ -129,7 +114,8 @@ class User {
      * @param string $password
      * @return User
      */
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $password;
 
         return $this;
@@ -140,7 +126,8 @@ class User {
      *
      * @return string 
      */
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
@@ -150,7 +137,8 @@ class User {
      * @param string $email
      * @return User
      */
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
 
         return $this;
@@ -161,7 +149,8 @@ class User {
      *
      * @return string 
      */
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
@@ -171,7 +160,8 @@ class User {
      * @param string $firstname
      * @return User
      */
-    public function setFirstname($firstname) {
+    public function setFirstname($firstname)
+    {
         $this->firstname = $firstname;
 
         return $this;
@@ -182,7 +172,8 @@ class User {
      *
      * @return string 
      */
-    public function getFirstname() {
+    public function getFirstname()
+    {
         return $this->firstname;
     }
 
@@ -192,7 +183,8 @@ class User {
      * @param string $lastname
      * @return User
      */
-    public function setLastname($lastname) {
+    public function setLastname($lastname)
+    {
         $this->lastname = $lastname;
 
         return $this;
@@ -203,7 +195,8 @@ class User {
      *
      * @return string 
      */
-    public function getLastname() {
+    public function getLastname()
+    {
         return $this->lastname;
     }
 
@@ -213,7 +206,8 @@ class User {
      * @param \DateTime $dateofbirth
      * @return User
      */
-    public function setDateofbirth($dateofbirth) {
+    public function setDateofbirth($dateofbirth)
+    {
         $this->dateofbirth = $dateofbirth;
 
         return $this;
@@ -224,7 +218,8 @@ class User {
      *
      * @return \DateTime 
      */
-    public function getDateofbirth() {
+    public function getDateofbirth()
+    {
         return $this->dateofbirth;
     }
 
@@ -234,7 +229,8 @@ class User {
      * @param string $phonenumber
      * @return User
      */
-    public function setPhonenumber($phonenumber) {
+    public function setPhonenumber($phonenumber)
+    {
         $this->phonenumber = $phonenumber;
 
         return $this;
@@ -245,7 +241,8 @@ class User {
      *
      * @return string 
      */
-    public function getPhonenumber() {
+    public function getPhonenumber()
+    {
         return $this->phonenumber;
     }
 
@@ -255,7 +252,8 @@ class User {
      * @param \AppBundle\Entity\TeamResearcher $teams
      * @return User
      */
-    public function addTeam(\AppBundle\Entity\TeamResearcher $teams) {
+    public function addTeam(\AppBundle\Entity\TeamResearcher $teams)
+    {
         $this->teams[] = $teams;
 
         return $this;
@@ -266,7 +264,8 @@ class User {
      *
      * @param \AppBundle\Entity\TeamResearcher $teams
      */
-    public function removeTeam(\AppBundle\Entity\TeamResearcher $teams) {
+    public function removeTeam(\AppBundle\Entity\TeamResearcher $teams)
+    {
         $this->teams->removeElement($teams);
     }
 
@@ -275,7 +274,8 @@ class User {
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getTeams() {
+    public function getTeams()
+    {
         return $this->teams;
     }
 
@@ -285,7 +285,8 @@ class User {
      * @param \AppBundle\Entity\PublicationResearcher $publications
      * @return User
      */
-    public function addPublication(\AppBundle\Entity\PublicationResearcher $publications) {
+    public function addPublication(\AppBundle\Entity\PublicationResearcher $publications)
+    {
         $this->publications[] = $publications;
 
         return $this;
@@ -296,7 +297,8 @@ class User {
      *
      * @param \AppBundle\Entity\PublicationResearcher $publications
      */
-    public function removePublication(\AppBundle\Entity\PublicationResearcher $publications) {
+    public function removePublication(\AppBundle\Entity\PublicationResearcher $publications)
+    {
         $this->publications->removeElement($publications);
     }
 
@@ -305,8 +307,8 @@ class User {
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getPublications() {
+    public function getPublications()
+    {
         return $this->publications;
     }
-
 }

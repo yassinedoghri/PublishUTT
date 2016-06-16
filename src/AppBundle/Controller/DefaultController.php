@@ -19,7 +19,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Template("AppBundle:Default:signin.html.twig")
+     * @Template("UserBundle:Security:signin.html.twig")
      * @Route("/signin", name="signin")
      */
     public function signInAction(Request $request) {
@@ -28,7 +28,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Template("AppBundle:Default:signup.html.twig")
+     * @Template("UserBundle:Security:signup.html.twig")
      * @Route("/signup", name="signup")
      */
     public function signUpAction(Request $request) {
