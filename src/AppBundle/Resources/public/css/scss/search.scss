@@ -3,7 +3,7 @@
 
 .search-form {
     position: relative;
-    padding-top: 80px;
+    padding-top: 100px;
     padding-bottom: 20px;
     text-align: center;
     z-index: 10;
@@ -115,68 +115,51 @@
     }
 }
 
-.search-item-container{
-    .search-item{
+section#search-results {
+    padding: 60px 0;
+}
+
+.search-item-container {
+    margin-bottom: 20px;
+    .publication {
         min-height: 200px;
-        margin-top: 15px;
         margin-bottom: 15px;
         position: relative;
-        padding: 0px;
-        .search-item-img{
-            height: 100%;
-            width: 33%;
-            position: absolute;
-            left: 0px;
-            border-radius: 5px;
-            &:after{
-                @include background-image(linear-gradient(to right, transparent, transparent 30%, white 85%, white));
-                content: "";
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                right: 0px;
+        padding: 10px;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+
+        ul.publication-contributors {
+            margin-bottom: 0;
+            padding-left: 0px;
+            li{
+                display: inline; 
+                &:after{content: ", ";}
+                &:last-child{&:after{content: ""};}
+                &:nth-last-child(2){&:after{content: " & "};}
             }
         }
-        .search-item-content{
-            position: relative;
-            height: 100%;
-            padding: 15px 15px 15px 25%;
-            ul.search-item-author{
-                list-style: none;
-                padding-left: 0px;
-                li{
-                    display: inline; 
-                    &:after{content: ", ";}
-                    &:last-child{&:after{content: ""};}
-                    &:nth-last-child(2){&:after{content: " & "};}
-                }
-            }
-            .search-item-abstract{
-                // text-align: justify;
-                &:after{content: "...";}
-            }
-            .search-item-book{
-
-            }
-            .search-item-year{
-                position: absolute;
-                right: 15px;
-                top: 15px;
-            }			
-            .search-item-category{
-                position: absolute;
-                right: 15px;
-                bottom: 15px;
-            }
+        .search-item-year{
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }			
+        .search-item-category{
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
         }
     }
-    nav{
-        p{float: left; line-height: 70px; margin-right: 15px;}
-        .pager{
+    nav {
+        p {
+            float: left;
+            line-height: 70px;
+            margin-right: 15px;
+        }
+        .pager {
             float: left;
             margin-top: 15px;
             margin-bottom: 15px;
-            a{
+            a {
                 border-radius: 5px;
                 padding: 5px 15px 4px 15px;
             }

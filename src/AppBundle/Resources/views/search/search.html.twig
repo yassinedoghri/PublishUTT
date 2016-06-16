@@ -1,0 +1,200 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/search.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    {#    {{ dump(publications) }}#}
+    <header class="parallax-window">
+        <img class="parallax-slider" src="{{ asset('bundles/app/img/header-bg.jpg') }}"/>
+        <div class="container search-form">
+            <div class="row">
+                <form id="search-form" class="form-inline col-lg-12" action="{{ path('search') }}" method="GET">
+                    <div class="input-group">
+                        <select id="search" class="form-control-xl search-input" multiple="multiple" style="width:100%;"></select>
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary btn-xl" type="submit"><span class="fa fa-search"></span></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+    <section id="search-results">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="col-lg-12 collaborator-item-container">
+                        <h3>Collaborators <span class="label label-pill label-default">3</span></h3>
+                        <hr>
+                        <div class="collaborator-item block col-xs-12 col-sm-6">
+                            <ul class="list-unstyled">
+                                <li><a href="">FirstName NAME</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-12 search-item-container">
+                            <h2>
+                                <span class="label label-pill label-info pull-right">{{ publications.getTotalItemCount }}</span>
+                                Publications
+                            </h2>
+                            <hr>
+                            <nav class="navbar navbar-light bg-faded toolbar-sort">
+                                <ul class="nav nav-inline pull-right">
+                                    <li class="nav-item">Sort:</li>
+                                    <li class="nav-item">
+                                        {{ knp_pagination_sortable(publications, 'Year', 'dateofpublication') }}
+                                    </li>
+                                    <li class="nav-item">
+                                        {{ knp_pagination_sortable(publications, 'Category', 'category') }}
+                                    </li>
+                                </ul>
+                            </nav>
+
+                            {% for publication in publications %}
+                                <article class="publication">
+                                    <p class="pull-right">{{ publication.dateofpublication | date("Y") }}</p>
+                                    <h3><a href="{{ path('show-publication', {'id': publication.id}) }}">{{ publication.title }}</a></h3>
+                                    <ul class="publication-contributors list-unstyled">
+                                        {% for pr in publication.researchers %}
+                                            <li><a href="{{ path('search', {'researcher[]': pr.researcher.id}) }}">{{ pr.researcher.firstname ~ ' ' ~ pr.researcher.lastname }}</a></li>
+                                            {% endfor %}
+                                    </ul>
+                                    <ul class="publication-contributors list-unstyled">
+                                        {% for pa in publication.authors %}
+                                            <li><a href="{{ path('search', {'author[]': pa.author.id}) }}">{{ pa.author.firstname ~ ' ' ~ pa.author.lastname }}</a></li>
+                                            {% endfor %}
+                                    </ul>
+                                    <p class="publication-abstract">
+                                        {% if publication.abstract %}
+                                            {{ publication.abstract|length > 200 ? publication.abstract|slice(0, 200) ~ '...' : publication.abstract  }}
+                                        {% else %}
+                                            <i>No abstract</i>
+                                        {% endif %}
+                                    </p>
+                                    <a class="pull-right" href="{{ path('search', {'category[]': publication.category.initials}) }}">{{ publication.category.wording }}</a>
+                                    <p class="search-item-book m-b-0"><i class="fa fa-book"></i> {{ publication.booktitle ? publication.booktitle : 'No press release recorded' }}</p>
+                                </article>
+                            {% endfor %}
+                            {{ knp_pagination_render(publications, 'AppBundle:Search:includes/_pagination.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block custom_javascript %}
+    <script>
+        var a = location.href;
+        var b = a.substring(a.indexOf("?") + 1);
+        $.ajax({
+            url: "{{ path("searchparams") }}",
+            type: "GET",
+            dataType: 'json',
+            data: b,
+            success: function (data) {
+                for (i = 0; i < data.length; i++) {
+                    $('#search').append($("<option/>", {
+                        value: data[i]['id'],
+                        text: data[i]['text'],
+                        selected: true
+                    }));
+                }
+                $("#search").select2({
+                    ajax: {
+                        url: "{{ path("searchterm") }}",
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                q: params.term, // search term
+                                page: params.page
+                            };
+                        },
+                        processResults: function (data, params) {
+                            params.page = params.page || 1;
+
+                            return {
+                                results: data.items,
+                                pagination: {
+                                    more: (params.page * 30) < data.total_count
+                                }
+                            };
+                        },
+                        cache: true
+                    },
+                    minimumInputLength: 1,
+                    templateResult: formatRepo,
+                    templateSelection: function (data) {
+                        return data.label || data.text;
+                    }
+                });
+            }
+        });
+
+        function formatRepo(repo) {
+            if (repo.loading)
+                return repo.text;
+            if (!repo.children) {
+                var markup = $('<div />');
+                markup.append($('<span />').attr('class', 'font-weight-bold').html(repo.text));
+                markup.append($('<span />').html(' as '));
+                markup.append($('<span />').attr('class', 'text-info').html(repo.type));
+            }
+            return markup;
+        }
+
+        $("#search-form").submit(function (eventObj) {
+            var searchVals = $("#search").select2("val");
+            $.each(searchVals, function (index, obj) {
+                var name = '';
+                var val = '';
+                if (!isNaN(obj)) {
+                    name = 'year[]';
+                    val = obj;
+                } else {
+                    if (obj.substr(0, 2) === 'a-') { // Author
+                        name = 'author[]';
+                        val = obj.split('-')[1];
+                    } else if (obj.substr(0, 2) === 'r-') { // Researcher
+                        name = 'researcher[]';
+                        val = obj.split('-')[1];
+                    } else if (obj.substr(0, 2) === 't-') { // Team
+                        name = 'team[]';
+                        val = obj.split('-')[1];
+                    } else {
+                        name = 'category[]';
+                        val = obj;
+                    }
+                }
+                $('<input />').attr('type', 'hidden')
+                        .attr('name', name)
+                        .attr('value', val)
+                        .appendTo('#search-form');
+            });
+            return true;
+        });
+
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+    </script>
+{% endblock %}

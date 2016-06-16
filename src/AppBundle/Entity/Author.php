@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="author")
  * @ORM\Entity
  */
-class Author
-{
+class Author {
+
     /**
      * @var integer
      *
@@ -45,19 +45,16 @@ class Author
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->publications = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -67,8 +64,7 @@ class Author
      * @param string $firstname
      * @return Author
      */
-    public function setFirstname($firstname)
-    {
+    public function setFirstname($firstname) {
         $this->firstname = $firstname;
 
         return $this;
@@ -79,8 +75,7 @@ class Author
      *
      * @return string 
      */
-    public function getFirstname()
-    {
+    public function getFirstname() {
         return $this->firstname;
     }
 
@@ -90,8 +85,7 @@ class Author
      * @param string $lastname
      * @return Author
      */
-    public function setLastname($lastname)
-    {
+    public function setLastname($lastname) {
         $this->lastname = $lastname;
 
         return $this;
@@ -102,8 +96,7 @@ class Author
      *
      * @return string 
      */
-    public function getLastname()
-    {
+    public function getLastname() {
         return $this->lastname;
     }
 
@@ -113,8 +106,7 @@ class Author
      * @param \AppBundle\Entity\PublicationAuthor $publications
      * @return Author
      */
-    public function addPublication(\AppBundle\Entity\PublicationAuthor $publications)
-    {
+    public function addPublication(\AppBundle\Entity\PublicationAuthor $publications) {
         $this->publications[] = $publications;
 
         return $this;
@@ -125,8 +117,7 @@ class Author
      *
      * @param \AppBundle\Entity\PublicationAuthor $publications
      */
-    public function removePublication(\AppBundle\Entity\PublicationAuthor $publications)
-    {
+    public function removePublication(\AppBundle\Entity\PublicationAuthor $publications) {
         $this->publications->removeElement($publications);
     }
 
@@ -135,8 +126,8 @@ class Author
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getPublications()
-    {
+    public function getPublications() {
         return $this->publications;
     }
+
 }

@@ -1,0 +1,26 @@
+<nav class="pull-right">
+    <p>Page <b>{{ current }}</b> of <b>{{ pageCount }}</b></p>
+    {% if pageCount > 1 %}
+        <ul class="pager">
+            {% if previous is defined %}
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}"><span class="fa fa-chevron-left"></span></a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a href="#"><span class="fa fa-chevron-left"></span></a>
+                </li>
+            {% endif %}
+
+            {% if next is defined %}
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): next})) }}"><span class="fa fa-chevron-right"></span></a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a href="#"><span class="fa fa-chevron-right"></span></a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</nav>

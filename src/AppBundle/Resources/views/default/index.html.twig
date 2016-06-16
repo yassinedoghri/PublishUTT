@@ -12,19 +12,9 @@
                 <h1 class="search-heading">Search amongst 2,154 scientific publications!</h1>
             </div>
             <div class="row">
-                <form class="form-inline col-lg-12" action="{{ path('search') }}" method="GET">
+                <form id="search-form" class="form-inline col-lg-12" action="{{ path('search') }}" method="GET">
                     <div class="input-group">
-                        <select class="form-control-xl search-input" name="q[]" multiple="multiple" style="width:100%;">
-                            <option value="AL">Alabama</option>
-                            <option value="WY">Wyoming</option>
-                            <option value="AL1">Alabama1</option>
-                            <option value="WY1">Wyoming1</option>
-                            <option value="AL2">Alabama2</option>
-                            <option value="WY2">Wyoming2</option>
-                            <option value="AL3">Alabama3</option>
-                            <option value="WY3">Wyoming3</option>
-                        </select>
-                        <!--<input type="text" class="form-control form-control-xl search-input" name="q" placeholder="Look for a publication, an author, a laboratory...">-->
+                        <select id="search" class="form-control-xl search-input" multiple="multiple" style="width:100%;" required></select>
                         <span class="input-group-btn">
                             <button class="btn btn-secondary btn-xl" type="submit"><span class="fa fa-search"></span></button>
                         </span>
@@ -111,4 +101,82 @@
             <span class="text-muted pull-right"><a href="http://yassine.doghri.fr/" target="_blank">Yassine Doghri</a> & <a href="http://www.romainbrandao.fr/" target="_blank">Romain Brandao</a></span>
         </div>
     </footer>
+{% endblock %}
+
+{% block custom_javascript %}
+    <script>
+
+        $("#search").select2({
+            ajax: {
+                url: "{{ path("searchterm") }}",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term, // search term
+                        page: params.page
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.items,
+                        pagination: {
+                            more: (params.page * 30) < data.total_count
+                        }
+                    };
+                },
+                cache: true
+            },
+            minimumInputLength: 1,
+            templateResult: formatRepo,
+            templateSelection: function (data) {
+                return data.label || data.text;
+            }
+        });
+
+        function formatRepo(repo) {
+            if (repo.loading)
+                return repo.text;
+            if (!repo.children) {
+                var markup = $('<div />');
+                markup.append($('<span />').attr('class', 'font-weight-bold').html(repo.text));
+                markup.append($('<span />').html(' as '));
+                markup.append($('<span />').attr('class', 'text-info').html(repo.type));
+            }
+            return markup;
+        }
+
+        $("#search-form").submit(function (eventObj) {
+            var searchVals = $("#search").select2("val");
+            $.each(searchVals, function (index, obj) {
+                var name = '';
+                var val = '';
+                if (!isNaN(obj)) {
+                    name = 'year[]';
+                    val = obj;
+                } else {
+                    if (obj.substr(0, 2) === 'a-') { // Author
+                        name = 'author[]';
+                        val = obj.split('-')[1];
+                    } else if (obj.substr(0, 2) === 'r-') { // Researcher
+                        name = 'researcher[]';
+                        val = obj.split('-')[1];
+                    } else if (obj.substr(0, 2) === 't-') { // Team
+                        name = 'team[]';
+                        val = obj.split('-')[1];
+                    } else {
+                        name = 'category[]';
+                        val = obj;
+                    }
+                }
+                $('<input />').attr('type', 'hidden')
+                        .attr('name', name)
+                        .attr('value', val)
+                        .appendTo('#search-form');
+            });
+            return true;
+        });
+    </script>
 {% endblock %}

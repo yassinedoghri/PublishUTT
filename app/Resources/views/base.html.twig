@@ -15,7 +15,7 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-full navbar-fixed-top navbar-light">
+        <nav class="main-nav navbar navbar-full navbar-fixed-top navbar-light">
             <a class="navbar-brand" href="{{ path('homepage') }}">
                 <img src="{{ asset('bundles/app/img/logo.svg') }}" class="svg-logo" alt="Logo Publish UTT"/>
                 <span class="sr-only">Publish UTT</span>
@@ -46,5 +46,6 @@
         <script src="{{ asset('assets/vendor/select2/dist/js/select2.min.js') }}"></script>
         <script src="{{ asset('bundles/app/js/publish-utt.js') }}"></script>
         {% block javascripts %}{% endblock %}
+        {% block custom_javascript %}{% endblock %}
     </body>
 </html>

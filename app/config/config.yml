@@ -68,31 +68,131 @@ swiftmailer:
     spool:     { type: memory }
 
 ## Elastica Configuration
-#fos_elastica:
-#    clients:
-#        default: { host: localhost, port: 9200 }
-#    indexes:
-#        app:
-#            client: default
-#            index_name: app_%kernel.environment%
-#            types:
-#                publication:
-#                    mappings:
-#                        id:
-#                        title: ~
-#                        abstract: ~
-#                        booktitle: ~
-#                        dateofpublication: ~
-#                        journal: ~
-#                    persistence:
-#                        driver: orm
-#                        model: PublishUTT\AppBundle\Entity\Publication
-#                        provider: ~
-#                        listener:
-#                            immediate: ~
-#                        finder: ~
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            types:
+                publication:
+                    mappings:
+                        id: ~
+                        title: ~
+                        abstract: ~
+                        booktitle: ~
+                        dateofpublication:
+                            type: date
+                        journal: ~
+                        category: ~
+                        authors:
+                            type: nested
+                            properties: 
+                                author:
+                                    type: nested
+                                    properties:
+                                        id: ~
+                                        firstname: ~
+                                        lastname: ~
+                        researchers:
+                            type: nested
+                            properties: 
+                                researcher:
+                                    type: nested
+                                    properties: 
+                                        id: ~
+                                        firstname: ~
+                                        lastname: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Publication
+                        repository: AppBundle\SearchRepository\PublicationRepository
+                        provider: ~
+                        listener:
+                            immediate: ~
+                        finder: ~
+                author:
+                    mappings:
+                        id: ~
+                        firstname: ~
+                        lastname: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Author
+                        repository: AppBundle\SearchRepository\AuthorRepository
+                        provider: ~
+                        listener:
+                            immediate: ~
+                        finder: ~
+                researcher:
+                    mappings:
+                        id: ~
+                        firstname: ~
+                        lastname: ~
+                        teams:
+                            type: nested
+                            properties: 
+                                team:
+                                    type: nested
+                                    properties: 
+                                        id: ~
+                                        initials: ~
+                                        wording: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\User
+                        repository: AppBundle\SearchRepository\ResearcherRepository
+                        provider: ~
+                        listener:
+                            immediate: ~
+                        finder: ~
+                category:
+                    mappings:
+                        initials: ~
+                        wording: ~
+                    persistence:
+                        identifier: initials
+                        driver: orm
+                        model: AppBundle\Entity\Category
+                        repository: AppBundle\SearchRepository\CategoryRepository
+                        provider: ~
+                        listener:
+                            immediate: ~
+                        finder: ~
+                teams:
+                    mappings:
+                        id: ~
+                        initials: ~
+                        wording: ~
+                        researchers:
+                            type: nested
+                            properties: 
+                                researcher:
+                                    type: nested
+                                    properties: 
+                                        id: ~
+                                        firstname: ~
+                                        lastname: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Team
+                        repository: AppBundle\SearchRepository\TeamRepository
+                        provider: ~
+                        listener:
+                            immediate: ~
+                        finder: ~
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User
+    
+knp_paginator:
+    page_range: 10
+    default_options:
+        page_name: page
+        sort_field_name: sort
+        sort_direction_name: direction
+        distinct: true
+    template:
+        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig

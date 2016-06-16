@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="category")
  * @ORM\Entity
  */
-class Category
-{
+class Category {
+
     /**
      * @var string
      *
@@ -38,19 +38,16 @@ class Category
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get initials
      *
      * @return string 
      */
-    public function getInitials()
-    {
+    public function getInitials() {
         return $this->initials;
     }
 
@@ -60,8 +57,7 @@ class Category
      * @param string $wording
      * @return Category
      */
-    public function setWording($wording)
-    {
+    public function setWording($wording) {
         $this->wording = $wording;
 
         return $this;
@@ -72,8 +68,7 @@ class Category
      *
      * @return string 
      */
-    public function getWording()
-    {
+    public function getWording() {
         return $this->wording;
     }
 
@@ -83,8 +78,7 @@ class Category
      * @param \AppBundle\Entity\Publication $categories
      * @return Category
      */
-    public function addCategory(\AppBundle\Entity\Publication $categories)
-    {
+    public function addCategory(\AppBundle\Entity\Publication $categories) {
         $this->categories[] = $categories;
 
         return $this;
@@ -95,8 +89,7 @@ class Category
      *
      * @param \AppBundle\Entity\Publication $categories
      */
-    public function removeCategory(\AppBundle\Entity\Publication $categories)
-    {
+    public function removeCategory(\AppBundle\Entity\Publication $categories) {
         $this->categories->removeElement($categories);
     }
 
@@ -105,8 +98,17 @@ class Category
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCategories()
-    {
+    public function getCategories() {
         return $this->categories;
     }
+
+    /**
+     * Category toString
+     *
+     * @return string String representation of this class
+     */
+    public function __toString() {
+        return $this->getInitials();
+    }
+
 }

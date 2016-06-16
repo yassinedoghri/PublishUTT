@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="publication_author", indexes={@ORM\Index(name="fk_co_written_publication", columns={"id_publication"})})
  * @ORM\Entity
  */
-class PublicationAuthor
-{
+class PublicationAuthor {
+
     /**
      * @var integer
      *
@@ -41,16 +41,13 @@ class PublicationAuthor
      */
     private $author;
 
-
-
     /**
      * Set orderindex
      *
      * @param integer $orderindex
      * @return PublicationAuthor
      */
-    public function setOrderindex($orderindex)
-    {
+    public function setOrderindex($orderindex) {
         $this->orderindex = $orderindex;
 
         return $this;
@@ -61,8 +58,7 @@ class PublicationAuthor
      *
      * @return integer 
      */
-    public function getOrderindex()
-    {
+    public function getOrderindex() {
         return $this->orderindex;
     }
 
@@ -72,8 +68,7 @@ class PublicationAuthor
      * @param \AppBundle\Entity\Publication $publication
      * @return PublicationAuthor
      */
-    public function setPublication(\AppBundle\Entity\Publication $publication = null)
-    {
+    public function setPublication(\AppBundle\Entity\Publication $publication = null) {
         $this->publication = $publication;
 
         return $this;
@@ -84,8 +79,7 @@ class PublicationAuthor
      *
      * @return \AppBundle\Entity\Publication 
      */
-    public function getPublication()
-    {
+    public function getPublication() {
         return $this->publication;
     }
 
@@ -95,8 +89,7 @@ class PublicationAuthor
      * @param \AppBundle\Entity\Author $author
      * @return PublicationAuthor
      */
-    public function setAuthor(\AppBundle\Entity\Author $author = null)
-    {
+    public function setAuthor(\AppBundle\Entity\Author $author = null) {
         $this->author = $author;
 
         return $this;
@@ -107,8 +100,8 @@ class PublicationAuthor
      *
      * @return \AppBundle\Entity\Author 
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
+
 }

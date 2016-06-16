@@ -11,8 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="publication", indexes={@ORM\Index(name="fk_publication_publisher", columns={"publisher"}), @ORM\Index(name="fk_publication_category", columns={"category"})})
  * @ORM\Entity
  */
-class Publication
-{
+class Publication {
+
     /**
      * @var integer
      *
@@ -130,20 +130,17 @@ class Publication
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->researchers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->authors = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -153,8 +150,7 @@ class Publication
      * @param string $title
      * @return Publication
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -165,8 +161,7 @@ class Publication
      *
      * @return string 
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -176,8 +171,7 @@ class Publication
      * @param string $booktitle
      * @return Publication
      */
-    public function setBooktitle($booktitle)
-    {
+    public function setBooktitle($booktitle) {
         $this->booktitle = $booktitle;
 
         return $this;
@@ -188,19 +182,17 @@ class Publication
      *
      * @return string 
      */
-    public function getBooktitle()
-    {
+    public function getBooktitle() {
         return $this->booktitle;
     }
 
     /**
      * Set dateofpublication
      *
-     * @param \DateTime $dateofpublication
+     * @param \Date $dateofpublication
      * @return Publication
      */
-    public function setDateofpublication($dateofpublication)
-    {
+    public function setDateofpublication($dateofpublication) {
         $this->dateofpublication = $dateofpublication;
 
         return $this;
@@ -211,8 +203,7 @@ class Publication
      *
      * @return \DateTime 
      */
-    public function getDateofpublication()
-    {
+    public function getDateofpublication() {
         return $this->dateofpublication;
     }
 
@@ -222,8 +213,7 @@ class Publication
      * @param string $journal
      * @return Publication
      */
-    public function setJournal($journal)
-    {
+    public function setJournal($journal) {
         $this->journal = $journal;
 
         return $this;
@@ -234,8 +224,7 @@ class Publication
      *
      * @return string 
      */
-    public function getJournal()
-    {
+    public function getJournal() {
         return $this->journal;
     }
 
@@ -245,8 +234,7 @@ class Publication
      * @param string $link
      * @return Publication
      */
-    public function setLink($link)
-    {
+    public function setLink($link) {
         $this->link = $link;
 
         return $this;
@@ -257,8 +245,7 @@ class Publication
      *
      * @return string 
      */
-    public function getLink()
-    {
+    public function getLink() {
         return $this->link;
     }
 
@@ -268,8 +255,7 @@ class Publication
      * @param string $abstract
      * @return Publication
      */
-    public function setAbstract($abstract)
-    {
+    public function setAbstract($abstract) {
         $this->abstract = $abstract;
 
         return $this;
@@ -280,8 +266,7 @@ class Publication
      *
      * @return string 
      */
-    public function getAbstract()
-    {
+    public function getAbstract() {
         return $this->abstract;
     }
 
@@ -291,8 +276,7 @@ class Publication
      * @param string $volume
      * @return Publication
      */
-    public function setVolume($volume)
-    {
+    public function setVolume($volume) {
         $this->volume = $volume;
 
         return $this;
@@ -303,8 +287,7 @@ class Publication
      *
      * @return string 
      */
-    public function getVolume()
-    {
+    public function getVolume() {
         return $this->volume;
     }
 
@@ -314,8 +297,7 @@ class Publication
      * @param string $pages
      * @return Publication
      */
-    public function setPages($pages)
-    {
+    public function setPages($pages) {
         $this->pages = $pages;
 
         return $this;
@@ -326,8 +308,7 @@ class Publication
      *
      * @return string 
      */
-    public function getPages()
-    {
+    public function getPages() {
         return $this->pages;
     }
 
@@ -337,8 +318,7 @@ class Publication
      * @param string $location
      * @return Publication
      */
-    public function setLocation($location)
-    {
+    public function setLocation($location) {
         $this->location = $location;
 
         return $this;
@@ -349,8 +329,7 @@ class Publication
      *
      * @return string 
      */
-    public function getLocation()
-    {
+    public function getLocation() {
         return $this->location;
     }
 
@@ -360,8 +339,7 @@ class Publication
      * @param boolean $status
      * @return Publication
      */
-    public function setStatus($status)
-    {
+    public function setStatus($status) {
         $this->status = $status;
 
         return $this;
@@ -372,8 +350,7 @@ class Publication
      *
      * @return boolean 
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
@@ -383,8 +360,7 @@ class Publication
      * @param \AppBundle\Entity\PublicationResearcher $researchers
      * @return Publication
      */
-    public function addResearcher(\AppBundle\Entity\PublicationResearcher $researchers)
-    {
+    public function addResearcher(\AppBundle\Entity\PublicationResearcher $researchers) {
         $this->researchers[] = $researchers;
 
         return $this;
@@ -395,8 +371,7 @@ class Publication
      *
      * @param \AppBundle\Entity\PublicationResearcher $researchers
      */
-    public function removeResearcher(\AppBundle\Entity\PublicationResearcher $researchers)
-    {
+    public function removeResearcher(\AppBundle\Entity\PublicationResearcher $researchers) {
         $this->researchers->removeElement($researchers);
     }
 
@@ -405,8 +380,7 @@ class Publication
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getResearchers()
-    {
+    public function getResearchers() {
         return $this->researchers;
     }
 
@@ -416,8 +390,7 @@ class Publication
      * @param \AppBundle\Entity\PublicationAuthor $authors
      * @return Publication
      */
-    public function addAuthor(\AppBundle\Entity\PublicationAuthor $authors)
-    {
+    public function addAuthor(\AppBundle\Entity\PublicationAuthor $authors) {
         $this->authors[] = $authors;
 
         return $this;
@@ -428,8 +401,7 @@ class Publication
      *
      * @param \AppBundle\Entity\PublicationAuthor $authors
      */
-    public function removeAuthor(\AppBundle\Entity\PublicationAuthor $authors)
-    {
+    public function removeAuthor(\AppBundle\Entity\PublicationAuthor $authors) {
         $this->authors->removeElement($authors);
     }
 
@@ -438,8 +410,7 @@ class Publication
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getAuthors()
-    {
+    public function getAuthors() {
         return $this->authors;
     }
 
@@ -449,8 +420,7 @@ class Publication
      * @param \AppBundle\Entity\Publisher $publisher
      * @return Publication
      */
-    public function setPublisher(\AppBundle\Entity\Publisher $publisher = null)
-    {
+    public function setPublisher(\AppBundle\Entity\Publisher $publisher = null) {
         $this->publisher = $publisher;
 
         return $this;
@@ -461,8 +431,7 @@ class Publication
      *
      * @return \AppBundle\Entity\Publisher 
      */
-    public function getPublisher()
-    {
+    public function getPublisher() {
         return $this->publisher;
     }
 
@@ -472,8 +441,7 @@ class Publication
      * @param \AppBundle\Entity\Category $category
      * @return Publication
      */
-    public function setCategory(\AppBundle\Entity\Category $category = null)
-    {
+    public function setCategory(\AppBundle\Entity\Category $category = null) {
         $this->category = $category;
 
         return $this;
@@ -484,8 +452,8 @@ class Publication
      *
      * @return \AppBundle\Entity\Category 
      */
-    public function getCategory()
-    {
+    public function getCategory() {
         return $this->category;
     }
+
 }

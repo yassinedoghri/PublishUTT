@@ -1,8 +1,4 @@
 $(document).ready(function () {
-    $('select').select2({
-        placeholder: "Look for a publication, an author, a laboratory..."
-    });
-
     $('.owl-carousel').owlCarousel({
         items: 4,
         margin: 10
@@ -25,10 +21,10 @@ $(document).ready(function () {
 
     $(window).scroll(function () {
         if ($(document).scrollTop() > 100) {
-            $('nav').addClass('navbar-shrink');
+            $('nav.main-nav').addClass('navbar-shrink');
             $('.collapse').addClass('main-nav-shrink');
         } else {
-            $('nav').removeClass('navbar-shrink');
+            $('nav.main-nav').removeClass('navbar-shrink');
             $('.collapse').removeClass('main-nav-shrink');
         }
     });
