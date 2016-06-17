@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityRepository;
+use AppBundle\Form\PublicationType;
 
 class PublicationController extends Controller {
 
@@ -31,49 +32,7 @@ class PublicationController extends Controller {
         // create a task and give it some dummy data for this example
         $publication = new \AppBundle\Entity\Publication();
 
-        $form = $this->createFormBuilder($publication)
-                ->add('title', 'text', array(
-                    'attr' => array(
-                        'class' => 'form-control'
-                    )
-                ))
-                ->add('dateofpublication', 'date', array(
-                    'years' => range(date('Y'), date('Y') - 100),
-                    'data' => new \DateTime("first day of january"),
-                    'placeholder' => array(
-                        'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                    ),
-                    'format' => 'dd-MM-yyyy',
-                    'attr' => array(
-                        'class' => 'form-control'
-                    ),
-                    'required' => false
-                ))
-                ->add('category', 'entity', array(
-                    'class' => 'AppBundle:Category',
-                    'query_builder' => function (EntityRepository $er) {
-                        return $er->createQueryBuilder('c')
-                                ->orderBy('c.wording', 'ASC');
-                    },
-                    'choice_label' => 'wording',
-                    'attr' => array(
-                        'class' => 'form-control'
-                    )
-                ))
-//                ->add('authors', 'entity', array(
-//                    'class' => 'AppBundle:PublicationAuthor',
-//                    'query_builder' => function (EntityRepository $er) {
-//                        return $er->createQueryBuilder('pa')
-//                                ->orderBy('pa.author', 'ASC');
-//                    },
-//                    'choice_label' => 'author',
-//                    'attr' => array(
-//                        'class' => 'form-control'
-//                    ),
-//                    'required' => false
-//                ))
-                ->getForm();
-
+        $form = $this->createForm(PublicationType::class, $publication);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -91,6 +50,33 @@ class PublicationController extends Controller {
             $em->persist($publicationResearcher);
             $em->flush();
             return $this->redirectToRoute('my-publications');
+        }
+
+        return array('form' => $form->createView());
+    }
+
+    /**
+     * @Template("AppBundle:Publication:update.html.twig")
+     * @Route("/update/publication/{id}", name="update-publication")
+     */
+    public function updateAction(Request $request, $id) {
+        if (is_null($id)) {
+            $postData = $request->get('testimonial');
+            $id = $postData['id'];
+        }
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $publication = $em->getRepository('AppBundle:Publication')->find($id);
+        $form = $this->createForm(PublicationType::class, $publication);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $publication2 = $form->getData();
+            $em->persist($publication2);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('my-publications'));
         }
 
         return array('form' => $form->createView());

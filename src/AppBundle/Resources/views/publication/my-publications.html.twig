@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="my-publication-container row grid">
-                {% if publications %}
+                {% if publications | length > 0 %}
                     {% for publication in publications %}
                         <div class="col-xs-12 col-md-6 col-lg-4 grid-item published">
                             <div class="my-publication-close">
@@ -42,7 +42,7 @@
                                     <p class="my-publication-data">{{ publication.dateofpublication | date("Y") }} | {{ publication.category.initials }} | <i class="fa fa-circle-o text-green"></i></p>
                                     <div class="my-publication-edit table">
                                         <div class="col-xs-6 text-xs-right my-publication-edit-icon table-cell v-middle"><a href="{{ path('show-publication', {'id': publication.id}) }}"><i class="fa fa-eye fa-2x"></i></a></div>
-                                        <div class="col-xs-6 text-xs-left my-publication-edit-icon table-cell v-middle"><a href="#"><i class="fa fa-edit fa-2x"></i></a></div>
+                                        <div class="col-xs-6 text-xs-left my-publication-edit-icon table-cell v-middle"><a href="{{ path('update-publication', {'id': publication.id}) }}"><i class="fa fa-edit fa-2x"></i></a></div>
                                     </div>
                                 </div>
                             </div>
