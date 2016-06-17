@@ -1,0 +1,61 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+    {% block fos_user_content %}
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-lg-pull-1 pull-lg-right">
+                        <div class="text-xs-center text-lg-left">
+                            <h2>Do you have an account?</h2> 
+                            <p class="text-muted">Sign in to manage your account and publications.</p>
+                        </div>
+                        <form action="{{ path("fos_user_security_check") }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            <span class="input input--fumi">
+                                <input class="input__field input__field--fumi" id="username" name="_username" value="{{ last_username }}" required="required" type="email" tabindex="1"/>
+                                <label class="input__label input__label--fumi" for="username">
+                                    <i class="fa fa-fw fa-envelope-o icon icon--fumi"></i>
+                                    <span class="input__label-content input__label-content--fumi">Email or Username</span>
+                                </label>
+                            </span>
+                            <span class="input input--fumi">
+                                <input class="input__field input__field--fumi" type="password" id="password" name="_password" required="required" tabindex="2"/>
+                                <label class="input__label input__label--fumi" for="inputPwd password">
+                                    <i class="fa fa-fw fa-lock icon icon--fumi"></i>
+                                    <span class="input__label-content input__label-content--fumi">Password</span>
+                                </label>
+                            </span>
+                            <span class="pull-right"><a href="" tabindex="-1">Password Forgotten?</a></span>
+                            <div class="checkbox pull-lg-left">
+                                <label for="remember_me">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" tabindex="3"> Remember me
+                                </label>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-12 text-xs-center">
+                                    <input type="submit" class="btn btn-primary-outline" id="_submit" name="_submit" value="Sign In" tabindex="4" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-1 sign-up">
+                        <div class="text-xs-center text-lg-left">
+                            <h2>Wish to join us?</h2>
+                            <p class="text-muted">Sign up to write and publish your scientific articles!</p>
+                        </div>
+                        <div class="text-xs-center">
+                            <a href="{{ path('fos_user_registration_register') }}" class="btn btn-lg btn-primary-outline">Create my account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock fos_user_content %}
+
+{% endblock body %}

@@ -5,60 +5,70 @@ namespace UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class RegistrationType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('firstname' , 'text', array(
+class RegistrationType extends AbstractType {
+
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $builder->add('email', 'email', array(
                     'attr' => array(
-                        'class' => 'form-control',
-                        'placeholder' => 'Enter your first name'
+                        'class' => 'form-control'
                     )
                 ))
-                ->add('lastname' , 'text', array(
+                ->add('username', 'text', array(
                     'attr' => array(
-                        'class' => 'form-control',
-                        'placeholder' => 'Enter your last name'
+                        'class' => 'form-control'
                     )
                 ))
-                ->add('dateofbirth' , 'date', array(
+                ->add('plainPassword', RepeatedType::class, array(
+                    'type' => PasswordType::class,
+                    'invalid_message' => 'The password fields must match.',
+                    'options' => array('attr' => array('class' => 'form-control')),
+                    'required' => true,
+                    'first_options' => array('label' => 'Password'),
+                    'second_options' => array('label' => 'Repeat Password'),
+                ))
+                ->add('firstname', 'text', array(
                     'attr' => array(
-                        'class' => 'form-control',
-                        'placeholder' => 'Enter your date of birthday'
+                        'class' => 'form-control'
                     )
                 ))
-                ->add('phonenumber' , 'text', array(
+                ->add('lastname', 'text', array(
                     'attr' => array(
-                        'class' => 'form-control',
-                        'placeholder' => 'Enter your phone number'
+                        'class' => 'form-control'
                     )
                 ))
-                // ->add('teams' , 'text', array(
-                //     'attr' => array(
-                //         'placeholder' => 'Enter your research team'
-                //     )
-                // ));
-                ;
+                ->add('dateofbirth', 'birthday', array(
+                    'placeholder' => array(
+                        'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                    ),
+                    'format' => 'dd-MM-yyyy',
+                    'attr' => array(
+                        'class' => 'form-control'
+                    )
+                ))
+                ->add('phonenumber', 'text', array(
+                    'attr' => array(
+                        'class' => 'form-control'
+                    )
+        ));
     }
 
-    public function getParent()
-    {
+    public function getParent() {
         return 'FOS\UserBundle\Form\Type\RegistrationFormType';
-
-        // Or for Symfony < 2.8
-        // return 'fos_user_registration';
     }
 
-    public function getBlockPrefix()
-    {
+    public function getBlockPrefix() {
         return 'app_user_registration';
     }
 
     // For Symfony 2.x
-    public function getName()
-    {
+    public function getName() {
         return $this->getBlockPrefix();
     }
+
 }
+
 ?>
