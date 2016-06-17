@@ -4,20 +4,21 @@ namespace UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class RegistrationType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('email', 'email', array(
+        $builder->add('email', EmailType::class, array(
                     'attr' => array(
                         'class' => 'form-control'
                     )
                 ))
-                ->add('username', 'text', array(
+                ->add('username', TextType::class, array(
                     'attr' => array(
                         'class' => 'form-control'
                     )
@@ -30,17 +31,17 @@ class RegistrationType extends AbstractType {
                     'first_options' => array('label' => 'Password'),
                     'second_options' => array('label' => 'Repeat Password'),
                 ))
-                ->add('firstname', 'text', array(
+                ->add('firstname', TextType::class, array(
                     'attr' => array(
                         'class' => 'form-control'
                     )
                 ))
-                ->add('lastname', 'text', array(
+                ->add('lastname', TextType::class, array(
                     'attr' => array(
                         'class' => 'form-control'
                     )
                 ))
-                ->add('dateofbirth', 'birthday', array(
+                ->add('dateofbirth', BirthdayType::class, array(
                     'placeholder' => array(
                         'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
                     ),
@@ -49,7 +50,7 @@ class RegistrationType extends AbstractType {
                         'class' => 'form-control'
                     )
                 ))
-                ->add('phonenumber', 'text', array(
+                ->add('phonenumber', TextType::class, array(
                     'attr' => array(
                         'class' => 'form-control'
                     )
