@@ -61,10 +61,10 @@
                                 {{ form_widget(form.dateofbirth.day, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                             <div class="col-xs-4">
-                                {{ form_widget(form.dateofbirth.month, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_widget(form.dateofbirth.month, {'value' : '01'} }) }}
                             </div>
                             <div class="col-xs-4">
-                                {{ form_widget(form.dateofbirth.year, { 'attr': {'class': 'form-control'} }) }}
+                                {{ form_widget(form.dateofbirth.year, {'value' : '01'} }) }}
                             </div>
                         </fieldset>
                     </div>
@@ -87,4 +87,3 @@
         </div>
     </div>
 </section>
-{#{{ form_end(form) }}#}

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/publication.css') }}">
+{% endblock %}
+
+{% block body %}
+    <header class="parallax-window">
+        <img class="parallax-slider" src="{{ asset('bundles/app/img/header-bg.jpg') }}"/>
+        <div class="container publication-header">
+            <div class="row">
+                <div class="col-lg-12 publication-title">
+                    <h1>Add a Publication</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="publication">
+        <div class="container">
+            {{ form_start(form) }}
+            {{ form_row(form._token) }}
+            <h3>About the Publication</h3>
+            <div class="row">
+                <fieldset class="form-group col-lg-12">
+                    {{ form_label(form.title) }}
+                    {{ form_widget(form.title) }}
+                    {{ form_errors(form.title) }}
+                </fieldset>
+            </div>
+            <div class="row">
+                <fieldset class="form-group col-lg-4">
+                    <label for="formGroupDateOfPublication" style="width:100%">Year</label>
+                    {{ form_widget(form.dateofpublication.year, { 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(form.dateofpublication.year) }}
+                    <div class="sr-only">
+                        {{ form_widget(form.dateofpublication.month, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_widget(form.dateofpublication.day, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </fieldset>
+                <fieldset class="form-group col-lg-8">
+                    {{ form_label(form.category) }}
+                    {{ form_widget(form.category) }}
+                    {{ form_errors(form.category) }}
+                </fieldset>
+                {#<fieldset class="form-group col-lg-6">
+                    {{ form_label(form.authors) }}
+                    {{ form_widget(form.authors) }}
+                    {{ form_errors(form.authors) }}
+                </fieldset>#}
+            </div>
+            <br/>
+            <div class="form-group row">
+                <div class="col-lg-12 text-xs-center">
+                    <button type="submit" class="btn btn-lg btn-success-outline"><span class="fa fa-plus"></span> Add</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block custom_javascript %}
+    <script>
+        $('#form_authors').select2();
+    </script>
+{% endblock %}

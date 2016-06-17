@@ -130,4 +130,8 @@ class Author {
         return $this->publications;
     }
 
+    public function __toString() {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
 }

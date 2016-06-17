@@ -85,4 +85,18 @@ class PublicationRepository extends Repository {
         return null;
     }
 
+    public function findPublicationsByResearcherId($id) {
+        $boolQuery = new \Elastica\Query\BoolQuery();
+        $nestedFilterRT = new \Elastica\Query\Nested();
+        $nestedFilterRT->setPath("researchers.researcher");
+        $researcherQuery = new \Elastica\Query\Term();
+        $researcherQuery->setTerm('researchers.researcher.id', $id);
+        $nestedFilterRT->setQuery($researcherQuery);
+        $boolQuery->addShould($nestedFilterRT);
+
+        $resultSet = $this->find($boolQuery);
+
+        return $resultSet;
+    }
+
 }

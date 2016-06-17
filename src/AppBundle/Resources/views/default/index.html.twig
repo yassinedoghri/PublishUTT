@@ -9,7 +9,7 @@
         <img class="parallax-slider" src="{{ asset('bundles/app/img/header-bg.jpg') }}"/>
         <div class="container search-form">
             <div class="row">
-                <h1 class="search-heading">Search amongst 2,154 scientific publications!</h1>
+                <h1 class="search-heading">Search amongst <strong>{{ count }}</strong> scientific publications!</h1>
             </div>
             <div class="row">
                 <form id="search-form" class="form-inline col-lg-12" action="{{ path('search') }}" method="GET">
@@ -107,6 +107,7 @@
     <script>
 
         $("#search").select2({
+            placeholder: "Look for a publication, an author, a laboratory...",
             ajax: {
                 url: "{{ path("searchterm") }}",
                 dataType: 'json',

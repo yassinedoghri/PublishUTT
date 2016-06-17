@@ -88,7 +88,8 @@ fos_elastica:
                         category: ~
                         authors:
                             type: nested
-                            properties: 
+                            properties:
+                                orderindex: ~
                                 author:
                                     type: nested
                                     properties:
@@ -97,7 +98,9 @@ fos_elastica:
                                         lastname: ~
                         researchers:
                             type: nested
-                            properties: 
+                            properties:
+                                owner: ~
+                                orderindex: ~
                                 researcher:
                                     type: nested
                                     properties: 
@@ -109,8 +112,7 @@ fos_elastica:
                         model: AppBundle\Entity\Publication
                         repository: AppBundle\SearchRepository\PublicationRepository
                         provider: ~
-                        listener:
-                            immediate: ~
+                        listener: ~
                         finder: ~
                 author:
                     mappings:
@@ -122,8 +124,7 @@ fos_elastica:
                         model: AppBundle\Entity\Author
                         repository: AppBundle\SearchRepository\AuthorRepository
                         provider: ~
-                        listener:
-                            immediate: ~
+                        listener: ~
                         finder: ~
                 researcher:
                     mappings:
@@ -144,8 +145,7 @@ fos_elastica:
                         model: AppBundle\Entity\User
                         repository: AppBundle\SearchRepository\ResearcherRepository
                         provider: ~
-                        listener:
-                            immediate: ~
+                        listener: ~
                         finder: ~
                 category:
                     mappings:
@@ -157,8 +157,7 @@ fos_elastica:
                         model: AppBundle\Entity\Category
                         repository: AppBundle\SearchRepository\CategoryRepository
                         provider: ~
-                        listener:
-                            immediate: ~
+                        listener: ~
                         finder: ~
                 teams:
                     mappings:
@@ -179,8 +178,7 @@ fos_elastica:
                         model: AppBundle\Entity\Team
                         repository: AppBundle\SearchRepository\TeamRepository
                         provider: ~
-                        listener:
-                            immediate: ~
+                        listener: ~
                         finder: ~
 
 fos_user:

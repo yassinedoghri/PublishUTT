@@ -30,7 +30,7 @@ class PublicationResearcher
      * @var \AppBundle\Entity\Publication
      *
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publication", inversedBy="researchers")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Publication", inversedBy="researchers", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_publication", referencedColumnName="id")
      * })
@@ -41,7 +41,7 @@ class PublicationResearcher
      * @var \AppBundle\Entity\User
      *
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="publications")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="publications", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_researcher", referencedColumnName="id")
      * })

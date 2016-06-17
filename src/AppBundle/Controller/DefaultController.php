@@ -14,44 +14,13 @@ class DefaultController extends Controller {
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request) {
-        // replace this example code with whatever you need
-        return array();
-    }
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select($qb->expr()->count('publication.id'));
+        $qb->from('AppBundle:Publication', 'publication');
 
-    /**
-     * @Template("UserBundle:Security:signin.html.twig")
-     * @Route("/signin", name="signin")
-     */
-    public function signInAction(Request $request) {
-        // replace this example code with whatever you need
-        return array();
-    }
-
-    /**
-     * @Template("UserBundle:Security:signup.html.twig")
-     * @Route("/signup", name="signup")
-     */
-    public function signUpAction(Request $request) {
-        // replace this example code with whatever you need
-        return array();
-    }
-
-    /**
-     * @Template("AppBundle:Default:search.html.twig")
-     * @Route("/search", name="search")
-     */
-    public function searchAction(Request $request) {
-        // replace this example code with whatever you need
-        return array();
-    }
-
-    /**
-     * @Template("AppBundle:Default:my-publications.html.twig")
-     * @Route("/account/publications", name="my-publications")
-     */
-    public function viewMyPublicationsAction(Request $request) {
-        // replace this example code with whatever you need
-        return array();
+        $count = $qb->getQuery()->getSingleScalarResult();
+        return array('count' => $count);
     }
 
 }
